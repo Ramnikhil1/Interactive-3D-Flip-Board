@@ -1,0 +1,140 @@
+/* 1. Global Styles & Font */
+body {
+  background: #f2f7fa;
+  font-family: 'Montserrat', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.cards-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+/* 2. Flip Card Container (+ Perspective for 3D) */
+.flip-card {
+  width: 320px;
+  height: 420px;
+  perspective: 1200px; /* gives 3D depth */
+}
+
+/* 3. Inner Card: enables flipping */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+/* Flip on hover */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus-within .flip-card-inner { /* for accessibility */
+  transform: rotateY(180deg);
+}
+
+/* 4. Card Faces */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 8px 36px rgba(22,40,90,0.10), 0 1.5px 6px rgba(31,47,115,0.08);
+  border-radius: 18px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* For content centering: */
+  justify-content: center;
+  padding: 34px 30px 30px 30px;
+  box-sizing: border-box;
+}
+
+/* Front face */
+.flip-card-front {
+  background: linear-gradient(120deg, #3b82f6 0%, #0ea5e9 100%);
+  color: #fff;
+  z-index: 2;
+}
+.flip-card-front img {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 3px 12px rgba(22,40,90,0.12);
+}
+.flip-card-front h3 {
+  margin: 12px 0 4px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.flip-card-front .tagline {
+  font-size: 1.07rem;
+  opacity: 0.86;
+  font-weight: 400;
+}
+
+/* Back face */
+.flip-card-back {
+  background: #fff;
+  color: #282f39;
+  transform: rotateY(180deg);
+  z-index: 1;
+  box-shadow: 0 5px 26px rgba(38,80,120,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.flip-card-back h3 {
+  margin: 18px 0 8px 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+.flip-card-back p {
+  font-size: 1.05rem;
+  margin: 0 0 26px 0;
+  text-align: center;
+  opacity: 0.88;
+}
+/* 5. Button */
+.flip-btn {
+  padding: 0.85em 2.3em;
+  border-radius: 24px;
+  background: linear-gradient(90deg,#6366f1 0%,#0891b2 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.06rem;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 18px rgba(99,102,241,0.11);
+  transition: background 0.2s, transform 0.2s;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: inline-block;
+}
+.flip-btn:hover, .flip-btn:focus {
+  background: #1e293b;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* 6. Responsive */
+@media (max-width: 420px) {
+  .flip-card {
+    width: 96vw;
+    height: 350px;
+  }
+  .flip-card-front img {
+    max-width: 160px;
+  }
+  .flip-card-front,
+  .flip-card-back {
+    padding: 14px 4vw 14px 4vw;
+  }
+}
